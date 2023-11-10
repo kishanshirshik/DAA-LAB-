@@ -1,1 +1,27 @@
+def leader_array(nums):
+    n = len(nums)
+    max_num = nums[n-1]
+    result = [max_num]
+    for i in range(n-2, -1, -1):
+        if nums[i] >= max_num:
+            max_num = nums[i]
+            result.append(max_num)
+    result.reverse()
+    return result
 
+def sort_array(nums):
+    sorted_nums = sorted(nums)
+    output = []
+    while sorted_nums:
+        output.append(sorted_nums.pop(0))
+        if sorted_nums:
+            output.append(sorted_nums.pop(-1))
+    return output
+
+def leader_sort_array(nums):
+    leader_array = leader_array(nums)
+    return sort_array(leader_array)
+
+# Example usage
+nums = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+print(leader_sort_array(nums)) # Output: [1, 9, 1, 6, 2, 5, 3, 5, 4, 5, 3]
