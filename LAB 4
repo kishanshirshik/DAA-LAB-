@@ -1,1 +1,24 @@
+# function to swap the corner elements of the matrix
+def diagonal_interchange(matrix):
+    n = len(matrix)
+    for i in range(n):
+        matrix[i][i], matrix[i][n-i-1] = matrix[i][n-i-1], matrix[i][i]
 
+# function to find the indices of a specified number in the array
+def index_finder(array, number):
+    indices = [i for i, x in enumerate(array) if x == number]
+    return indices
+
+# Testing
+# Interchange the values of the left and right diagonals in a square matrix
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+diagonal_interchange(matrix)
+print("Matrix after interchange: ")
+for row in matrix:
+    print(row)
+
+# Find the indices of a specified number in the array
+array = [4, 2, 7, 1, 6, 8, 9, 5, 3]
+number = 7
+indices = index_finder(array, number)
+print(f"Indices of {number} in the array: {indices}")
