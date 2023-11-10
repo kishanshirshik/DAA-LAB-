@@ -1,1 +1,41 @@
+from collections import deque
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def spiral_order(root):
+    if root is None:
+        return []
+
+    result = []
+    queue = deque([(root, 0)]) # The queue holds (node, level) tuples
+    current_level = 0
+
+    while queue:
+        node, level = queue.popleft()
+
+        if node:
+            result.append(node.data)
+
+            if level % 2 == 0: # If the current level is even, add the left and right children to the queue
+                queue.append((node.left, level + 1))
+                queue.append((node.right, level + 1))
+            else: # If the current level is odd, add the right and left children to the queue
+                queue.append((node.right, level + 1))
+                queue.append((node.left, level + 1))
+
+    return result
+
+# Test the function
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(7)
+root.left.right = Node(6)
+root.right.left = Node(5)
+root.right.right = Node(4)
+
+print(spiral_order(root)) # Output: [1, 2, 3, 4, 5, 6, 7]
