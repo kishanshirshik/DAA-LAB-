@@ -1,1 +1,24 @@
 
+def rows_with_most_ones(matrix):
+    n = len(matrix)
+    one_counts = [sum(row) for row in matrix]
+    max_count = max(one_counts)
+    max_indices = [i for i, count in enumerate(one_counts) if count == max_count]
+    return max_indices
+
+matrix = [[1, 0, 0], [0, 1, 1], [1, 1, 0]]
+print(rows_with_most_ones(matrix))
+
+
+
+def middle_row_column_sum(matrix):
+    n = len(matrix)
+    middle_index = n // 2
+
+    middle_row_sum = sum(matrix[middle_index])
+    middle_column_sum = sum(matrix[i][middle_index] for i in range(n))
+
+    return middle_row_sum, middle_column_sum
+
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(middle_row_column_sum(matrix))
