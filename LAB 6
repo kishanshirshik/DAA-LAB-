@@ -1,1 +1,31 @@
+def rows_with_most_ones(matrix):
+    one_counts = [sum(row) for row in matrix]
+    max_count = max(one_counts)
+    max_indices = [i for i, count in enumerate(one_counts) if count == max_count]
+    return max_indices
 
+def bubble_sort(matrix):
+    n = len(matrix)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if matrix[j][i] > matrix[j+1][i]:
+                matrix[j], matrix[j+1] = matrix[j+1], matrix[j]
+
+def sort_and_replace(matrix):
+    max_rows = rows_with_most_ones(matrix)
+    middle_index = len(matrix) // 2
+    left_diagonal_index = middle_index
+    right_diagonal_index = len(matrix) - middle_index - 1
+
+    for row in range(len(matrix)):
+        bubble_sort(matrix[row])
+
+    for row in max_rows:
+        matrix[row][left_diagonal_index] = 0
+        matrix[row][right_diagonal_index] = 0
+
+matrix = [[1, 0, 0], [0, 1, 1], [1, 1, 0]]
+sort_and_replace(matrix)
+
+for row in matrix:
+    print(row)
